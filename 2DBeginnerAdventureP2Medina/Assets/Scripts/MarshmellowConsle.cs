@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MarshmellowConsle : MonoBehaviour
 {
+    public int maxHealth = 5;
+    int currentHealth;
+
+
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
@@ -12,6 +16,7 @@ public class MarshmellowConsle : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
 
     }
 
@@ -29,5 +34,10 @@ public class MarshmellowConsle : MonoBehaviour
         position.y = position.y + 3.0f * vertical * Time.deltaTime; ;
 
         rigidbody2d.MovePosition(position);
+    }
+    void ChangeHealth(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
     }
 }
