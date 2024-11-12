@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class HealthColle : MonoBehaviour
 {
-     void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        MarshmellowController controller = other.GetComponent<MarshmellowController>();
+        MarshmellowConsle controller = other.GetComponent<MarshmellowConsle>();
         if (controller != null)
         {
-            controller.ChangeHeaalth(1);
-            Destroy(gameObject);
+            if (controller.health < controller.maxHealth)
+            {
+                controller.ChangeHealth(1);
+                Destroy(gameObject);
+            }
+
         }
 
     }
